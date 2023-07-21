@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <button id="get__btn">Get news</button>
+</body>
+    <script>
+        const baseURL = "http://localhost:3500/api";
+        const getBtn = document.querySelector('#get__btn');
+
+        getBtn.addEventListener('click', ()=>{
+            getData();
+        });
+
+        const getData = async () =>{
+        try {
+            const response = await fetch(baseURL,{
+                method:"GET"
+            });
+            if(!response.ok){
+                const message = response.status;
+                throw new Error(message);
+            }
+            
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log('error')
+        }
+    };
+
+    </script>
+</html>
